@@ -575,10 +575,7 @@ def dissociative_experiences(subjectNumber, win):
 def main(subjectNumber, win):
 
     pg.mouse.set_visible(True)
-    # tellegen(subjectNumber, win)
-    # launay_slade(subjectNumber, win)
+    tellegen(subjectNumber, win)
+    launay_slade(subjectNumber, win)
     dissociative_experiences(subjectNumber, win)
     pg.mouse.set_visible(False)
-
-if __name__ == '__main__':
-    main(None, None, None)
