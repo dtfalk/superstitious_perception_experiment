@@ -18,7 +18,7 @@ class Button:
             if questionnaireName == 'tellegen':
                 scalar = 1.75
             elif questionnaireName == 'launay':
-                scalar = 1.5
+                scalar = 1.4
             elif questionnaireName == 'dissociative':
                 scalar = 1.5
             spacing = scalar * i * self.fontSize 
@@ -320,7 +320,7 @@ def launay_slade(subjectNumber, win):
     ResponseOptions8 = ['1 - Not at all like me', '2', '3', '4', '5', '6', '7', '8 - Extremely like me']
     questions.append([question8] + ResponseOptions8)
 
-    question9 = 'have never been troubled by hearing voices in my head.'
+    question9 = 'I have never been troubled by hearing voices in my head.'
     ResponseOptions9 = ['1 - Not at all like me', '2', '3', '4', '5', '6', '7', '8 - Extremely like me']
     questions.append([question9] + ResponseOptions9)
     
@@ -461,7 +461,7 @@ def dissociative_experiences(subjectNumber, win):
     ResponseOptions15 = ['0%', '10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%']
     questions.append([question15] + ResponseOptions15)
 
-    question16 = ' Some people have the experience of being in a familiar place but finding it strange and unfamiliar. Select a box to show what percentage of the time this happens to you.'
+    question16 = 'Some people have the experience of being in a familiar place but finding it strange and unfamiliar. Select a box to show what percentage of the time this happens to you.'
     ResponseOptions16 = ['0%', '10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%']
     questions.append([question16] + ResponseOptions16)
 
