@@ -1,4 +1,5 @@
 # tests have been run and there is no overlapping stimuli
+# TODO: Add consent screen
 import pygame as pg
 from random import shuffle
 from time import sleep
@@ -133,7 +134,7 @@ def main():
 
     
     # showing the user the experiment
-    #questions(subjectNumber, win)
+    questions(subjectNumber, win)
     experimentIntro(win)
     experimentExplanation(win)
     pg.event.clear()
@@ -157,6 +158,7 @@ def main():
         # give break screen betweeen blocks
         if i < len(blocks) - 1:
             breakScreen(i + 1, win)
+            realInstructionsAlt(win)
 
     # exit screen thanking participants
     exitScreen(win)

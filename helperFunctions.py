@@ -424,6 +424,13 @@ def realInstructions(win):
     pg.display.flip()
     waitKey(pg.K_SPACE)
 
+# instructions for the real trials
+def realInstructionsAlt(win):
+    win.fill(backgroundColor)
+    multiLineMessage(realTextAlt, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
 # break screen thanking the participant
 def breakScreen(i, win):
     win.fill(backgroundColor)
