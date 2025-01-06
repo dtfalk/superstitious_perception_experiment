@@ -394,7 +394,7 @@ def showTemplate(win):
     win.blit(image, screenCenter)
     pg.display.flip()
     startTime = pg.time.get_ticks()
-    while pg.time.get_ticks() - startTime < int(10 * 1000):
+    while pg.time.get_ticks() - startTime < int(20 * 1000):
         for event in pg.event.get():
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
@@ -425,9 +425,9 @@ def realInstructions(win):
     waitKey(pg.K_SPACE)
 
 # break screen thanking the participant
-def breakScreen(win):
+def breakScreen(i, win):
     win.fill(backgroundColor)
-    multiLineMessage(breakScreenText, mediumFont, win)
+    multiLineMessage(breakScreenText(i), mediumFont, win)
     pg.display.flip()
     waitKey(pg.K_f)
 

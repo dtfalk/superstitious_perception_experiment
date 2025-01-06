@@ -133,7 +133,7 @@ def main():
 
     
     # showing the user the experiment
-    questions(subjectNumber, win)
+    #questions(subjectNumber, win)
     experimentIntro(win)
     experimentExplanation(win)
     pg.event.clear()
@@ -142,7 +142,7 @@ def main():
 
     # give users all four blocks
     for i, block in enumerate(blocks):
-        print(f'block {i}: {block}')
+        print(f'block {i + 1}: {block}')
 
         # extract weighting scheme (gaussian vs unweighted) and correlation scheme (uncorrelated vs i-correlated)
         targetImages, distractorImages = stimuliDictionary[block]
@@ -156,7 +156,7 @@ def main():
         
         # give break screen betweeen blocks
         if i < len(blocks) - 1:
-            breakScreen(win)
+            breakScreen(i + 1, win)
 
     # exit screen thanking participants
     exitScreen(win)

@@ -115,25 +115,25 @@ validLetters, validNumbers = getValidChars()
 # =======================================================================
 # =======================================================================
 
-explanationText = 'In this task you will be shown a series of squares which contain a pattern of black and white dots. \
-In half of the trials, a black H will be present in the pattern. You will be asked to determine whether or not the H is in the image. \
-It will be very difficult to make this determination, but please trust your intuition. \
-You will be stretching the limits of your perception, but previous research shows that people are quite good at this task, even when they feel like they do not think they are doing well.\
-The H will not be obvious, but it is always centered, and you will be shown an image of the H for reference before you begin.\n\n\
-For each image, please press "Y" if you believe that you see the H and \
-press "N" if you do not believe that you see the H.\n\n\
-Remember, you will be better at this task than you think.\n\n\
-Thank you for participating and please let your experimenter know if you encounter any issues or if you would like to terminate your participation in the experiment.\n\n\
-Press the spacebar to continue.\n\n\n'
-                
-realText = 'Remember to press "Y" if you believe that you see an H.\n\n\
-Remember to press "N" if you do not believe that you see an H.\n\n\
-You will now be shown the template H that will be in half of the stimuli.\n\n\
-You will have 10 seconds to view the template H.\n\n\
-After those 10 seconds, the first image will automatically appear and you will begin making your selections.\n\n\
-Press the spacebar to continue when you are ready.'
+explanationText = 'Welcome to this fascinating visual perception task! As part of this experiment, you will encounter a series of images filled with a mix of black and white dots. Within half of these images, a black "H" will be subtly embedded. Your challenge is to identify whether the "H" is present in each image. This task will test the limits of your perception, urging you to trust the subtle hints and the instincts that might suggest the presence of the "H".\n\n\
+Even though spotting the "H" might seem daunting at first, believe in your intuitive abilities. Research has consistently shown that people can perform remarkably well on such tasks, often exceeding their own expectations. The "H" will be centered but obscured, and we will provide you with a reference image of the "H" before you start, to help guide your observations.\n\n\
+When you are ready to make a decision for each image, press "Y" if you feel the "H" is there, or press "N" if you think it is absent. Remember, more often than not, your first impression might be more accurate than you realize.\n\n\
+We thank you for participating and value your contributions to this study. Should you have any questions, or if you decide to stop participating, please inform your experimenter immediately.\n\n\
+Press the spacebar when you are ready to begin the experiment. Good luck, and trust in the power of your perception!'
 
-breakScreenText = 'You have earned a break.\n\nPlease let the experimenter know.\n\n\
+                
+realText = 'Remember, you are looking for the template "H", which will always be black, centered, and on a white background. It will always appear in the same place if it is present, and it is present in half of the images.\n\n\
+After viewing the template "H" for 20 seconds, you will begin assessing each image. Press "Y" if you believe the "H" is in the image, and press "N" if you do not see it. The task consists of four rounds, and you will receive a short break between each round to rest.\n\n\
+Press the spacebar when you are ready to proceed and start making your selections.\n\n\
+Good luck, and believe in yourself! It is normal to feel unsure, as many participants think they are not doing well, but you will likely perform better than you expect!'
+
+realTextAlt = 'Remember, you are looking for the template "H", which will always be black, centered, and on a white background. It will always appear in the same place if it is present, and it is present in half of the images.\n\n\
+After viewing the template "H" for 20 seconds, you will begin assessing each image. Press "Y" if you believe the "H" is in the image, and press "N" if you do not see it. \n\n\
+Press the spacebar when you are ready to proceed and start making your selections.\n\n\
+Good luck, and believe in yourself! It is normal to feel unsure, as many participants think they are not doing well, but you will likely perform better than you expect!'
+
+def breakScreenText(i):
+    return f'You have now completed {i} out of 4 rounds.\n\n You have earned a break.\n\n Please let the experimenter know.\n\n\
 When you are ready you will be shown the template again and resume your task.\n\n'
 
 exitScreenText = 'Thank you for participating in this study!\n\n'\
