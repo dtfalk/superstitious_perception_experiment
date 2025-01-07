@@ -5,6 +5,7 @@ from random import shuffle
 from time import sleep
 from helperFunctions import *
 from questionnaires import main as questions
+from questionnaires import flow_state_scale
 
 
 # The experiment itself
@@ -103,8 +104,10 @@ def main():
     # ============================================================================================
 
     # get user info and where to store their results
-    subjectName= getSubjectInfo('name', win)
+    subjectName= getSubjectInfo('subject name', win)
     subjectNumber = getSubjectInfo('subject number', win)
+    subjectEmail = getSubjectInfo('subject email', win)
+    experimenterName = getSubjectInfo('experimenter name', win)
     saveFolder = os.path.join(os.path.dirname(__file__), 'results', subjectNumber)
     os.makedirs(saveFolder, exist_ok = True)
 
@@ -134,6 +137,9 @@ def main():
 
     
     # showing the user the experiment
+    consented = consentScreen(subjectNumber, subjectName, subjectEmail, experimenterName, win)
+    if not consented:
+        nonConsentScreen(win)
     questions(subjectNumber, win)
     experimentIntro(win)
     experimentExplanation(win)
@@ -159,6 +165,9 @@ def main():
         if i < len(blocks) - 1:
             breakScreen(i + 1, win)
             realInstructionsAlt(win)
+    
+    # flow state scale
+    flow_state_scale(subjectNumber, win)
 
     # exit screen thanking participants
     exitScreen(win)

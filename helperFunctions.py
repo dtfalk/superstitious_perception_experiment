@@ -4,7 +4,10 @@ import csv
 from random import choice
 from scipy.stats import norm
 import pygame as pg
+import pytz
+from datetime import datetime
 from constants import *
+
 
 imageWidth, imageHeight = 51, 51
 imageSize = imageWidth * imageHeight
@@ -13,6 +16,78 @@ imageSize = imageWidth * imageHeight
 scaleFactor = winWidth / 1024
 
 scaledImageSize = (imageWidth * scaleFactor, imageHeight * scaleFactor)
+
+# class for the buttons the user will see
+class Button:
+
+    # initializes an instance of a button
+    def __init__(self, buttonType, questionnaireName, text, i, yPosQuestion):
+
+         # creates a box to click and text for questionnaire options
+        if buttonType == 'option':
+            self.fontSize = mediumFont
+            if questionnaireName == 'tellegen':
+                scalar = 1.75
+            elif questionnaireName == 'launay':
+                scalar = 1.4
+            elif questionnaireName == 'dissociative':
+                scalar = 1.5
+            spacing = scalar * i * self.fontSize 
+            buffer = winHeight // 20
+            maxY = (0.85 * winHeight) - self.fontSize
+            self.coords = ((0.05 * winWidth) + (0.45 * winWidth) * ((yPosQuestion + spacing + buffer) // maxY), 
+                           yPosQuestion + buffer + (spacing % (maxY - (yPosQuestion + buffer))), 
+                           self.fontSize, 
+                           self.fontSize)
+            self.text_x = self.coords[0] + 1.5 * self.fontSize
+            self.text_y = self.coords[1] - 0.1 * self.fontSize
+            
+        else: # creates the submit button so the user may submit their response
+            self.fontSize = int(0.85 * mediumFont)
+            self.coords = (0.45 * winWidth, 0.85 * winHeight, 0.1 * winWidth, 1.1 * self.fontSize)
+            self.text_x = 0.46 * winWidth
+            self.text_y = self.coords[1]
+        
+        self.color = WHITE
+        self.text = text
+        self.checkbox = pg.Rect(self.coords)
+        self.checked = False # is the checkbox checked or not
+        self.buttonType = buttonType # question option vs submit button
+    
+    # draw function for each button
+    def draw(self, win):
+        pg.draw.rect(win, self.color, self.checkbox)
+        text_surface = pg.font.SysFont("times new roman", self.fontSize).render(self.text, True, BLACK)     
+        win.blit(text_surface, (self.text_x, self.text_y))
+
+    # handles button clicks
+    def handleClick(self, buttons):
+        if self.buttonType == 'option':
+            self.checked = not self.checked # switch button state
+            if self.checked: # if selected, change color to red
+                self.color = RED
+            else: # if unselected, change color to white
+                self.color = WHITE 
+            self.unselectOthers(buttons)
+            return None
+        else:
+            for button in buttons:
+                if button.checked and button != self:
+                    self.checked = True
+                    return button.text
+            
+    # unselects all other questions
+    def unselectOthers(self, buttons):
+        for button in buttons:
+
+            # don't unclick button just clicked or "unclick" the submit button
+            if button == self or button.buttonType != 'option':
+                continue
+
+            # if something is already checked, then uncheck it
+            if button.checked:
+                button.checked = False
+                button.color = WHITE
 
 # This block of code handles lab streaming layer functionality
 # =======================================================================
@@ -167,13 +242,18 @@ def multiLineMessage(text, textsize, win, ):
 def isValid(key, requestType):
 
     # response only allows a-z and spaces
-    if requestType == 'name':
+    if 'name' in requestType:
         if 97 <= key <= 122 or key == 32:
             return True
 
     # subject number and level selection only allow digits
-    elif requestType == 'subject number' or requestType == 'starting level (1 - 99)':
+    elif requestType == 'subject number':
         if 48 <= key <= 57:
+            return True
+    
+    # subejct email
+    else:
+        if (97 <= key <= 122) or (48 <= key <= 57) or key == 64 or key == 46 or key == 45:
             return True
         
     return False
@@ -199,8 +279,7 @@ def getSubjectInfo(requestType, win):
                 # if they press enter or return, then...
                 if event.key == pg.K_KP_ENTER or event.key == pg.K_RETURN:
                     
-                    if (requestType == 'name' or requestType == 'subject number' or \
-                    (requestType == 'starting level (1 - 99)' and (1 <= int('0' + response) <= 99))) and len(response) > 0:
+                    if len(response) > 0:
                         
                         # set the exit key to the key they pressed and set the exit boolean to true
                         exit_key = event.key
@@ -213,9 +292,12 @@ def getSubjectInfo(requestType, win):
                 # if they enter a valid key (a-z, 0-9, or spacebar)
                 elif isValid(event.key, requestType):
                     if (pg.key.get_mods() & pg.KMOD_CAPS) or (pg.key.get_mods() & pg.KMOD_SHIFT):
-                        response = response + chr(event.key).upper()
+                        if event.key == 50:
+                            response += '@'
+                        else:
+                            response = response + chr(event.key).upper()
                     else:
-                        response = response + chr(event.key)
+                        response = response + chr(event.key).lower()
         if exit == True:
             break
         win.fill(backgroundColor) 
@@ -444,6 +526,113 @@ def exitScreen(win):
     multiLineMessage(exitScreenText, mediumFont, win)
     pg.display.flip()
     waitKey(pg.K_f)
+
+# exit screen thanking the participant
+def nonConsentScreen(win):
+    win.fill(backgroundColor)
+    multiLineMessage(nonConsentText, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+    pg.quit()
+    sys.exit()
+
+
+# contains questionnaire questions and displays questionnaire to the subject
+def consentScreen(subjectNumber, subjectName, subjectEmail, experimenterName, win):
+
+    win.fill(backgroundColor)
+    multiLineMessage(studyInfoText, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
+    win.fill(backgroundColor)
+    multiLineMessage(risksAndBenefitsText, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
+    win.fill(backgroundColor)
+    multiLineMessage(confidentialityText, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
+    win.fill(backgroundColor)
+    multiLineMessage(contactsAndQuestionsText, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
+    pg.mouse.set_visible(True)
+    # variables to hold all of the questions and their associated response options
+    questions = []
+
+    # question 1 text and response options
+    question1 = 'By clicking “I agree” below, you confirm that you have read the consent form, are at least 18 years old, and agree to participate in the research. Please print or save a copy of this page for your records. By selecting “I do NOT agree” you will not be able to participate in this research and we thank you for your consideration.'
+    ResponseOptions1 = ['I agree to participate in the research', 'I do NOT agree to participate in the research ']
+    questions.append([question1] + ResponseOptions1)
+
+    submitButton = Button('submit', 'tellegen', 'Submit', -1, 0) # submit button
+    responses = [] # for storing answers to each question
+
+    # iterate over each question and display to user
+    for i, question in enumerate(questions):
+
+        response = None
+
+        # draw the question and return how far down the screen the text goes
+        yPos = multiLineMessage(question[0], mediumFont, win)
+
+        # create all of the options for this particular questions
+        buttons = [submitButton]
+        for i, question_option in enumerate(question):
+            if i == 0:
+                continue
+            buttons.append(Button('option', 'tellegen', question_option, i, yPos))
+
+        while response == None:
+            win.fill(backgroundColor)
+            for event in pg.event.get():
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_ESCAPE: # escape will exit the study
+                        pg.quit()
+                        sys.exit()
+                elif event.type == pg.MOUSEBUTTONUP:
+                    for i, button in enumerate(buttons):
+                        if (button.coords[0] <= pg.mouse.get_pos()[0] <= button.coords[0] + button.coords[2]) \
+                            and (button.coords[1] <= pg.mouse.get_pos()[1] <= button.coords[1] + button.coords[3]):
+                            response = button.handleClick(buttons)
+
+            # draw the question and return how far down the screen the text goes
+            multiLineMessage(question[0], mediumFont, win)
+
+            # draw the submit button and the checkboxes for this questions
+            submitButton.draw(win)
+            for i, button in enumerate(buttons): 
+                button.draw(win)
+            pg.display.flip() 
+        
+        # add the user's response to the list of responses
+        responses.append(response)
+    if 'I agree' in responses[0]:
+        consented = True
+    else:
+        consented = False
+    
+    # Create a timezone object for Central Time
+    central_tz = pytz.timezone('America/Chicago')
+
+    # Get the current time in UTC
+    current_utc = datetime.now(pytz.utc)
+
+    # Convert the current UTC time to Central Time
+    current_central = current_utc.astimezone(central_tz)
+
+    # Format the date and time in a specific format e.g., YYYY-MM-DD HH:MM:SS
+    formatted_date = current_central.strftime('%Y-%m-%d %H:%M:%S')
+    # write all of the responses to a csv file with the questionnaire's name as the file name. 
+    with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'consentInfo.csv'), mode = 'w', newline = '') as f:
+        writer = csv.writer(f)
+        writer.writerow(['Subject Number', 'Subject Name', 'Subject Email', 'Experimenter Name', 'Consented', 'Date'])
+        writer.writerow([subjectNumber, subjectName, subjectEmail, experimenterName, str(consented), formatted_date])
+    return consented
 
 # =======================================================================
 # =======================================================================

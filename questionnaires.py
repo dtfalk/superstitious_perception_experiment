@@ -395,6 +395,217 @@ def launay_slade(subjectNumber, win):
     return
 
 # contains questionnaire questions and displays questionnaire to the subject
+def flow_state_scale(subjectNumber, win):
+
+    # variables to hold all of the questions and their associated response options
+    questions = []
+
+    # question 1 text and response options
+    question1 = 'I was challenged, but I believed my skills would allow me to meet the challenge.'
+    ResponseOptions1 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question1] + ResponseOptions1)
+
+    question2 = 'I made the correct movements without thinking about trying to do so.'
+    ResponseOptions2 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question2] + ResponseOptions2)
+
+    question3 = 'I knew clearly what I wanted to do.'
+    ResponseOptions3 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question3] + ResponseOptions3)
+
+    question4 = "It was really clear to me that I was doing well."
+    ResponseOptions4 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question4] + ResponseOptions4)
+
+    question5 = 'My attention was focused entirely on what I was doing.'
+    ResponseOptions5 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question5] + ResponseOptions5)
+
+    question6 = 'I felt in total control of what I was doing.'
+    ResponseOptions6 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question6] + ResponseOptions6)
+
+    question7 = 'I was not concerned with what others may have been thinking of me.'
+    ResponseOptions7 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question7] + ResponseOptions7)
+
+    question8 = 'Time seemed to alter (either slowed down or speeded up).'
+    ResponseOptions8 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question8] + ResponseOptions8)
+
+    question9 = 'I really enjoyed the experience.'
+    ResponseOptions9 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question9] + ResponseOptions9)
+    
+    question10 = 'My abilities matched the high challenge of the situation.'
+    ResponseOptions10 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question10] + ResponseOptions10)
+
+    question11 = 'Things just seemed to be happening automatically.'
+    ResponseOptions11 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question11] + ResponseOptions11)
+
+    question12 = "I had a strong sense of what I wanted to do."
+    ResponseOptions12 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question12] + ResponseOptions12)
+
+    question13 = 'I was aware of how well I was performing.'
+    ResponseOptions13 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question13] + ResponseOptions13)
+
+    question14 = 'It was no effort to keep my mind on what was happening.'
+    ResponseOptions14 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question14] + ResponseOptions14)
+
+    question15 = 'I felt like I could control what I was doing.'
+    ResponseOptions15 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question15] + ResponseOptions15)
+
+    question16 = "I was not worried about my performance during the event."
+    ResponseOptions16 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question16] + ResponseOptions16)
+
+    question17 = 'The way time passed seemed to be different from normal.'
+    ResponseOptions17 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question17] + ResponseOptions17)
+
+    question18 = 'I loved the feeling of that performance and want to capture it again.'
+    ResponseOptions18 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question18] + ResponseOptions18)
+
+    question19 = 'I felt I was competent enough to meet the high demands of the situation.'
+    ResponseOptions19 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question19] + ResponseOptions19)
+
+    question20 = 'I performed automatically.'
+    ResponseOptions20 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question20] + ResponseOptions20)
+
+    question21= 'I knew what I wanted to achieve.'
+    ResponseOptions21 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question21] + ResponseOptions21)
+    
+    question22 = 'I had a good idea while I was performing about how well I was doing.'
+    ResponseOptions22 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question22] + ResponseOptions22)
+
+    question23 = 'I had total concentration.'
+    ResponseOptions23 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question23] + ResponseOptions23)
+
+    question24 = "I had a feeling of total control."
+    ResponseOptions24 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question24] + ResponseOptions24)
+
+    question25 = 'I was not concerned with how I was presenting myself.'
+    ResponseOptions25 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question25] + ResponseOptions25)
+    
+    question26 = 'It felt like time stopped while I was performing.'
+    ResponseOptions26 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question26] + ResponseOptions26)
+
+    question27 = 'The experience left me feeling great.'
+    ResponseOptions27 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question27] + ResponseOptions27)
+
+    question28 = 'The challenge and my skills were at an equally high level.'
+    ResponseOptions28 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question28] + ResponseOptions28)
+
+    question29 = 'I did things spontaneously and automatically without having to think.'
+    ResponseOptions29 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question29] + ResponseOptions29)
+
+    question30 = 'My goals were clearly defined.'
+    ResponseOptions30 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question30] + ResponseOptions30)
+
+    question31 = "I could tell by the way I was performing how well I was doing."
+    ResponseOptions31 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question31] + ResponseOptions31)
+
+    question32 = '1 was completely focused on the task at hand.'
+    ResponseOptions32 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question32] + ResponseOptions32)
+
+    question33 = 'I felt in total control of my body.'
+    ResponseOptions33 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question33] + ResponseOptions33)
+
+    question34 = 'I was not worried about what others may have been thinking of me.'
+    ResponseOptions34 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question34] + ResponseOptions34)
+
+    question35 = 'At times, it almost seemed like things were happening in slow motion.'
+    ResponseOptions35 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question35] + ResponseOptions35)
+
+    question36 = "I found the experience extremely rewarding."
+    ResponseOptions36 = ['1 - Strongly disagree', '2', '3 - Neither agree nor disagree', '4', '5 - Strongly agree']
+    questions.append([question36] + ResponseOptions36)
+
+    submitButton = Button('submit', 'launay', 'Submit', -1, 0) # submit button
+    responses = [] # for storing answers to each question
+
+    # iterate over each question and display to user
+    for i, question in enumerate(questions):
+        
+        if i == 0:
+            multiLineMessage(flow_state_instructions, mediumFont, win)
+            pg.display.flip()
+            waitKey(pg.K_SPACE)
+            pg.mouse.set_visible(True)
+
+        response = None
+
+        # draw the question and return how far down the screen the text goes
+        yPos = multiLineMessage(question[0], mediumFont, win)
+
+        # create all of the options for this particular questions
+        buttons = [submitButton]
+        for i, question_option in enumerate(question):
+            if i == 0:
+                continue
+            buttons.append(Button('option', 'launay', question_option, i, yPos))
+
+        while response == None:
+
+            win.fill(backgroundColor)
+            for event in pg.event.get():
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_ESCAPE: # escape will exit the study
+                        pg.quit()
+                        sys.exit()
+                elif event.type == pg.MOUSEBUTTONUP:
+                    for i, button in enumerate(buttons):
+                        if (button.coords[0] <= pg.mouse.get_pos()[0] <= button.coords[0] + button.coords[2]) \
+                            and (button.coords[1] <= pg.mouse.get_pos()[1] <= button.coords[1] + button.coords[3]):
+                            response = button.handleClick(buttons)
+
+            # draw the question and return how far down the screen the text goes
+            multiLineMessage(question[0], mediumFont, win)
+
+            # draw the submit button and the questions
+            submitButton.draw(win)
+            for i, button in enumerate(buttons): 
+                button.draw( win)
+            pg.display.flip() 
+        
+        # add the user's response to the list of responses
+        responses.append(response)
+    
+    # write the responses to a csv file with the questionnaire's name
+    with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'flow_state_scale.csv'), mode = 'w', newline = '') as f:
+        writer = csv.writer(f)
+        header = [f'Q{i + 1}' for i in range(len(questions))]
+        assert(len(responses) == 36)
+        writer.writerow(header)
+        writer.writerow([''.join([ch for ch in response if ch.isdigit()]) for response in responses])
+    pg.mouse.set_visible(False)
+    return
+
+# contains questionnaire questions and displays questionnaire to the subject
 def dissociative_experiences(subjectNumber, win):
 
     # variables to hold all of the questions and their associated response options
@@ -573,7 +784,6 @@ def dissociative_experiences(subjectNumber, win):
 
 
 def main(subjectNumber, win):
-
     pg.mouse.set_visible(True)
     tellegen(subjectNumber, win)
     launay_slade(subjectNumber, win)
