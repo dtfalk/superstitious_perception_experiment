@@ -445,18 +445,18 @@ def getStimuli():
 
     # list of file names as paths (gaussian)
     gaussianHStimuli_uncorrelated = [os.path.join(stimuliDir, 'gaussianUncorrelatedH', fileName) for fileName in os.listdir(os.path.join(stimuliDir, 'gaussianUncorrelatedH'))]
-    gaussianHStimuli_icorrelated = [os.path.join(stimuliDir, 'gaussianICorrelatedH', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'gaussianICorrelatedH'))]
-    gaussianIStimuli = [os.path.join(stimuliDir, 'gaussianI', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'gaussianI'))]
+    gaussianHStimuli_vcorrelated = [os.path.join(stimuliDir, 'gaussianVCorrelatedH', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'gaussianVCorrelatedH'))]
+    gaussianVStimuli = [os.path.join(stimuliDir, 'gaussianV', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'gaussianV'))]
     gaussianNoCorrelationStimuli = [os.path.join(stimuliDir, 'gaussianUncorrelated', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'gaussianUncorrelated'))]
 
     # list of file names as paths (unweighted)
     unweightedHStimuli_uncorrelated = [os.path.join(stimuliDir, 'unweightedUncorrelatedH', fileName) for fileName in os.listdir(os.path.join(stimuliDir, 'unweightedUncorrelatedH'))]
-    unweightedHStimuli_icorrelated = [os.path.join(stimuliDir, 'unweightedICorrelatedH', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'unweightedICorrelatedH'))]
-    unweightedIStimuli = [os.path.join(stimuliDir, 'unweightedI', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'unweightedI'))]
+    unweightedHStimuli_vcorrelated = [os.path.join(stimuliDir, 'unweightedVCorrelatedH', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'unweightedVCorrelatedH'))]
+    unweightedVStimuli = [os.path.join(stimuliDir, 'unweightedV', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'unweightedV'))]
     unweightedNoCorrelationStimuli = [os.path.join(stimuliDir, 'unweightedUncorrelated', fileName) for fileName in os.listdir(os.path.join(stimuliDir,'unweightedUncorrelated'))]
 
-    return gaussianHStimuli_uncorrelated,  gaussianHStimuli_icorrelated, gaussianIStimuli, gaussianNoCorrelationStimuli, \
-    unweightedHStimuli_uncorrelated, unweightedHStimuli_icorrelated, unweightedIStimuli, unweightedNoCorrelationStimuli 
+    return gaussianHStimuli_uncorrelated,  gaussianHStimuli_vcorrelated, gaussianVStimuli, gaussianNoCorrelationStimuli, \
+    unweightedHStimuli_uncorrelated, unweightedHStimuli_vcorrelated, unweightedVStimuli, unweightedNoCorrelationStimuli 
 
 
 

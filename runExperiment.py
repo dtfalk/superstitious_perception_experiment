@@ -112,21 +112,21 @@ def main():
     os.makedirs(saveFolder, exist_ok = True)
 
     # gets the top rated Hs, top rated Is and noisy images
-    gaussianHStimuli_uncorrelated,  gaussianHStimuli_icorrelated, gaussianIStimuli, gaussianNoCorrelationStimuli, \
-    unweightedHStimuli_uncorrelated, unweightedHStimuli_icorrelated, unweightedIStimuli, unweightedNoCorrelationStimuli = getStimuli()
+    gaussianHStimuli_uncorrelated,  gaussianHStimuli_vcorrelated, gaussianVStimuli, gaussianNoCorrelationStimuli, \
+    unweightedHStimuli_uncorrelated, unweightedHStimuli_vcorrelated, unweightedVStimuli, unweightedNoCorrelationStimuli = getStimuli()
 
     # map the weighting scheme/correlation scheme pair to the actual lists of images
     # (weighting scheme, correlation scheme) ---> (target images, distractor images)
     stimuliDictionary = {
-        'unweighted_icorrelated': (unweightedHStimuli_icorrelated, unweightedIStimuli),
+        'unweighted_vcorrelated': (unweightedHStimuli_vcorrelated, unweightedVStimuli),
         'unweighted_uncorrelated': (unweightedHStimuli_uncorrelated, unweightedNoCorrelationStimuli),
-        'gaussian_icorrelated': (gaussianHStimuli_icorrelated, gaussianIStimuli),
+        'gaussian_vcorrelated': (gaussianHStimuli_vcorrelated, gaussianVStimuli),
         'gaussian_uncorrelated': (gaussianHStimuli_uncorrelated, gaussianNoCorrelationStimuli)
     }
     
     # shuffle the blocks randomly, preserving gaussian with gaussian and unweighted with unweighted
-    shuffledBlocks = [['unweighted_icorrelated', 'unweighted_uncorrelated'],
-                    ['gaussian_icorrelated', 'gaussian_uncorrelated']]   
+    shuffledBlocks = [['unweighted_vcorrelated', 'unweighted_uncorrelated'],
+                    ['gaussian_vcorrelated', 'gaussian_uncorrelated']]   
     for block in shuffledBlocks:
         shuffle(block)
     shuffle(shuffledBlocks)
