@@ -115,11 +115,46 @@ validLetters, validNumbers = getValidChars()
 # =======================================================================
 # =======================================================================
 
-explanationText = 'Welcome to this fascinating visual perception task! As part of this experiment, you will encounter a series of images filled with a mix of black and white dots. Within half of these images, a black "H" will be subtly embedded. Your challenge is to identify whether the "H" is present in each image. This task will test the limits of your perception, urging you to trust the subtle hints and the instincts that might suggest the presence of the "H".\n\n\
-Even though spotting the "H" might seem daunting at first, believe in your intuitive abilities. Research has consistently shown that people can perform remarkably well on such tasks, often exceeding their own expectations. The "H" will be centered but obscured, and we will provide you with a reference image of the "H" before you start, to help guide your observations.\n\n\
-When you are ready to make a decision for each image, press "Y" if you feel the "H" is there, or press "N" if you think it is absent. Remember, more often than not, your first impression might be more accurate than you realize.\n\n\
-We thank you for participating and value your contributions to this study. Should you have any questions, or if you decide to stop participating, please inform your experimenter immediately.\n\n\
-Press the spacebar when you are ready to begin the experiment. Good luck, and trust in the power of your perception!'
+explanationText_1 = 'Welcome to the experiment!\n\n\
+In this experiment, you will see a series of images made up of black and white dots or pixels. Hidden within half of these images is a faint black “H”. Your goal is to decide whether the “H” is present in each image.\n\n\
+Press the spacebar to continue.' 
+
+explanationText_2 = 'To help you think about the task, imagine you are driving toward a city while tuning your radio through static. At first, all you hear is noise, but as you get closer, faint notes or rhythms from a song begin to emerge. Even if the melody is not clear, you might sense its presence through subtle patterns in the noise.\n\n\
+Similarly, in this task, you will not clearly see the “H”. Instead, you may feel as though certain patterns or impressions suggest its presence, even if it is just a hunch.\n\n\
+When doing the task, many people describe the act of identifying the “H” as almost superstitious—a gut feeling rather than a definite perception. That is perfectly okay and expected for this task.\n\n\
+The most important thing to remember is that as long as you try very hard, it is okay to rely on those superstitious feelings.\n\n\
+Press the spacebar to continue.'
+
+explanationText_3 = 'To help guide you, we will show you an image of the “H” that will be faintly present in half the images before you begin. We will also show you an example of an image where the “H” is present and an image where the “H” is absent.\n\n\
+Please keep in mind that for images where the H is present, the “H” will always be centered and the same size as it is depicted in the reference image.\n\n\
+Your job is to trust your instincts and look for any subtle hints that suggest the “H” might be present.\n\n\
+Press the spacebar to continue.'
+
+explanationText_4 = 'Here is what you need to do: \n\
+        - Press "Y" if you have a sense or feeling that the "H" is there, even if you are not certain.\n\
+        - Press "N" if you think the "H" is absent.\n\n\
+You should be pressing “Y” half the time, and pressing “N” half the time. Remember, even if you are unsure, as long as you are actively trying, your initial impression might still guide you to the right answer.\n\n\
+Important Notes:\n\
+        - If you have any questions during the task or decide to stop, please inform the experimenter immediately.\n\
+        - We know how difficult this task is and really appreciate your valuable help and thank you for contributing to this study.\n\n\
+When you are ready, press the spacebar to see an image of the “H” that will be faintly present in half the images before you begin.'
+
+explanationText_5 = 'What to keep in mind:\n\n\
+    - For images where the “H” is present, the “H” will always be centered in the image and not change in size.\n\
+    - Trust your instincts—this task is designed to challenge the very limits of perception.\n\
+    - It is okay to feel uncertain; the goal is to make your best guess based on what you sense in the image.\n\n\n\
+If you have any questions please ask the exprimenter now.\n\n\
+If you do not have any further questions and are ready to begin, press spacebar to continue. \n\n\
+You will be presented with the "H" for 20 seconds. After it disappears, please begin responding with "Y" or "N".\n\n\
+Good luck, and remember that if you are actively trying, it is okay to trust your gut-feelings!'
+
+showExamplesText = 'On the left is an example of an image where the “H” is present, while on the right is an image where the “H” is absent. As you can see, this task is quite difficult. Just from looking at the differences between these images, you can tell that identifying the “H” will not come from clearly seeing it. Instead, you may find yourself relying on subtle impressions, patterns, or even a gut feeling that the “H” is there.\n\n\
+    Press the spacebar to continue.'
+# 'Welcome to this fascinating visual perception task! As part of this experiment, you will encounter a series of images filled with a mix of black and white dots. Within half of these images, a black "H" will be subtly embedded. Your challenge is to identify whether the "H" is present in each image. This task will test the limits of your perception, urging you to trust the subtle hints and the instincts that might suggest the presence of the "H".\n\n\
+# Even though spotting the "H" might seem daunting at first, believe in your intuitive abilities. Research has consistently shown that people can perform remarkably well on such tasks, often exceeding their own expectations. The "H" will be centered but obscured, and we will provide you with a reference image of the "H" before you start, to help guide your observations.\n\n\
+# When you are ready to make a decision for each image, press "Y" if you feel the "H" is there, or press "N" if you think it is absent. Remember, more often than not, your first impression might be more accurate than you realize.\n\n\
+# We thank you for participating and value your contributions to this study. Should you have any questions, or if you decide to stop participating, please inform your experimenter immediately.\n\n\
+# Press the spacebar when you are ready to begin the experiment. Good luck, and trust in the power of your perception!'
 
                 
 realText = 'Remember, you are looking for the template "H", which will always be black, centered, and on a white background. It will always appear in the same place if it is present, and it is present in half of the images.\n\n\

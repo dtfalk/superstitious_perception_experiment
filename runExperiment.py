@@ -144,8 +144,6 @@ def main():
     experimentIntro(win)
     experimentExplanation(win)
     pg.event.clear()
-    realInstructions(win)
-    pg.event.clear()
 
     # give users all four blocks
     for i, block in enumerate(blocks):

@@ -126,17 +126,11 @@ def waitKey(key):
                     sys.exit()
 
 # function to draw/fit a multiline message to the screen
-def multiLineMessage(text, textsize, win, ):
+def multiLineMessage(text, textsize, win, xPos_start = 0.05 * winWidth, yPos_start = 0.05 * winHeight, xMax = 0.95 * winWidth, yMax = 0.95 * winHeight):
 
     # set font and text color
     font = pg.font.SysFont("times new roman", textsize)
     color = BLACK
-
-    # Initialize variables for layout calculations
-    xPos_start = 0.05 * winWidth
-    yPos_start = 0.05 * winHeight
-    xMax = 0.95 * winWidth
-    yMax = 0.95 * winHeight
 
     # Function to calculate if the text fits within the designated area
     def fitsWithinArea(text, font):
@@ -465,24 +459,58 @@ def getStimuli():
 # =======================================================================
 # =======================================================================
 
-# shows the stimulus in the "show template once" condition
-def showTemplate(win):
+# shows the template H
+def showTemplate(win, text = ''):
 
     templateImagePath = os.path.join(os.path.dirname(__file__), 'templates', 'H.png')
     image = pg.transform.scale(pg.image.load(templateImagePath), (stimSize, stimSize))
 
     # display template to user for 10 seconds
     win.fill(backgroundColor)
+    multiLineMessage(text, mediumFont, win, yMax = int(0.95 * (screenCenter[1] - (stimSize // 2))))
     win.blit(image, screenCenter)
     pg.display.flip()
     startTime = pg.time.get_ticks()
-    while pg.time.get_ticks() - startTime < int(20 * 1000):
+    while True:
+        if text == '':
+            if pg.time.get_ticks() - startTime >= int(20 * 1000):
+                return
+        
         for event in pg.event.get():
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
                     pg.quit()
                     sys.exit()
-    return
+                elif event.key == pg.K_SPACE:
+                    return
+
+# shows the example stimuli
+def showExamples(win, text = ''):
+
+    example_image_path = os.path.join(os.path.dirname(__file__), 'exampleStimuli', 'example.png')
+    example_image = pg.transform.scale(pg.image.load(example_image_path), (stimSize, stimSize))
+
+    nonexample_image_path = os.path.join(os.path.dirname(__file__), 'exampleStimuli', 'nonexample.png')
+    nonexample_image = pg.transform.scale(pg.image.load(nonexample_image_path), (stimSize, stimSize))
+
+    templateImagePath = os.path.join(os.path.dirname(__file__), 'templates', 'H.png')
+    templateImage = pg.transform.scale(pg.image.load(templateImagePath), (stimSize, stimSize))
+
+    # display template to user for 10 seconds
+    win.fill(backgroundColor)
+    multiLineMessage(text, mediumFont, win, yMax = int(0.95 * (screenCenter[1] - (stimSize // 2))))
+    win.blit(templateImage, screenCenter)
+    win.blit(example_image, (screenCenter[0] // 2, screenCenter[1]))
+    win.blit(nonexample_image, (3 * (screenCenter[0] // 2), screenCenter[1]))
+    pg.display.flip()
+    while True:
+        for event in pg.event.get():
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_ESCAPE:
+                    pg.quit()
+                    sys.exit()
+                elif event.key == pg.K_SPACE:
+                    return
 
 
 # Tell the user that they are beginning the real experiment and have completed the questionnaires
@@ -495,12 +523,35 @@ def experimentIntro(win):
 # explains the experiment to the subject
 def experimentExplanation(win):
     win.fill(backgroundColor)
-    multiLineMessage(explanationText, mediumFont, win)
+    multiLineMessage(explanationText_1, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
+    win.fill(backgroundColor)
+    multiLineMessage(explanationText_2, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
+    win.fill(backgroundColor)
+    multiLineMessage(explanationText_3, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
+    win.fill(backgroundColor)
+    multiLineMessage(explanationText_4, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
+    showTemplate(win, text = 'This is an image of the “H” that will be hidden within half of the images you will see.\n\nPress the spacebar to continue.')
+    showExamples(win, text = showExamplesText)
+
+    win.fill(backgroundColor)
+    multiLineMessage(explanationText_5, mediumFont, win)
     pg.display.flip()
     waitKey(pg.K_SPACE)
 
 # instructions for the real trials
-def realInstructions(win):
+def finalInstructions(win):
     win.fill(backgroundColor)
     multiLineMessage(realText, mediumFont, win)
     pg.display.flip()
