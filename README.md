@@ -83,6 +83,7 @@ from screeninfo import get_monitors
 
 screen_width_in_centimeters = 50
 distance_from_screen_in_centimeters = 100
+number_of_sona_credits = 'xxx'
 ```
 
 The other thing you will need to change is the **number_of_sona_credits** variable above. It is currently set to 'xxx'. Change it to however many SONA credits you are offering your subjects for their participation.
