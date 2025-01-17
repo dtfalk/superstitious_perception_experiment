@@ -184,7 +184,7 @@ experimentIntroText = 'You have now completed the questionnaires.\n\nYou will no
 flow_state_instructions = 'Please respond to this final questionnaire about your experience during this experiment. \n\nPress the spacebar to continue.'
 studyInfoText = f'Study Number: IRB24-1770\nStudy Title: Superstitious Perception\nResearcher(s): Shannon Heald\n\n\
 Description: We are researchers at the University of Chicago doing a research study about the limits of human perception. You will be asked to view various images and respond whether or not you believe a particular image is hidden inside of them. You will also be asked to fill out a couple of questionnaires.\n\n\
-Participation should take approximately 60-90 minutes.\nYour participation is voluntary.\n\n\
+Participation should take approximately 90 minutes.\nYour participation is voluntary.\n\n\
 Incentives: You will be compensated {number_of_sona_credits} SONA Credits for your participation in this study. You will also be entered into a raffle for a 50 dollar Amazon gift card. Your performance on the study will influence your chances of winning the raffle. The better you do, the higher your chances are to win the giftcard.\n\n\
 Please press the spacebar to continue.'
 
