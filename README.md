@@ -95,6 +95,8 @@ The experiment typically takes 90 minutes to run. When the experiment first star
 
 **tellegen.csv:** The subject's responses to the tellegen absorption questionnaire.
 
+**flow_state_scale.csv:** The subject's responses to the flow state scale.
+
 **gaussian_icorrelated.csv:** The subject's responses to the gaussian-weighted with i-correlated distractors block.
 
 **gaussian_uncorrelated.csv:** The subject's responses to the gaussian-weighted with uncorrelated distractors block.
