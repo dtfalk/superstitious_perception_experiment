@@ -8,6 +8,7 @@ from screeninfo import get_monitors
 
 screen_width_in_centimeters = 31.5
 distance_from_screen_in_centimeters = 69
+number_of_sona_credits = 'xxx'
 
 # get screen size for each monitor in the syste m
 winfo = get_monitors()
@@ -181,10 +182,10 @@ dissociativeExperiencesText = 'This questionnaire consists of twenty-eight quest
 experimentIntroText = 'You have now completed the questionnaires.\n\nYou will now begin the main experiment.\n\nPress the spacebar to continue'
 
 flow_state_instructions = 'Please respond to this final questionnaire about your experience during this experiment. \n\nPress the spacebar to continue.'
-studyInfoText = 'Study Number: IRB24-1770\nStudy Title: Superstitious Perception\nResearcher(s): Shannon Heald\n\n\
+studyInfoText = f'Study Number: IRB24-1770\nStudy Title: Superstitious Perception\nResearcher(s): Shannon Heald\n\n\
 Description: We are researchers at the University of Chicago doing a research study about the limits of human perception. You will be asked to view various images and respond whether or not you believe a particular image is hidden inside of them. You will also be asked to fill out a couple of questionnaires.\n\n\
 Participation should take approximately 60-90 minutes.\nYour participation is voluntary.\n\n\
-Incentives: You will be compensated xxx SONA Credits for your participation in this study. You will also be entered into a raffle for a 50 dollar Amazon gift card. Your performance on the study will influence your chances of winning the raffle. The better you do, the higher your chances are to win the giftcard.\n\n\
+Incentives: You will be compensated {number_of_sona_credits} SONA Credits for your participation in this study. You will also be entered into a raffle for a 50 dollar Amazon gift card. Your performance on the study will influence your chances of winning the raffle. The better you do, the higher your chances are to win the giftcard.\n\n\
 Please press the spacebar to continue.'
 
 risksAndBenefitsText = 'Risks and Benefits: Your participation in this study does not involve any risk to you beyond that of everyday life. \n\nRisks for this task are minimal and include boredom, minor fatigue, and the possibility of a breach of confidentiality. \n\nTaking part in this research study may not benefit you personally beyond learning about psychological research, but we may learn new things that could help others and contribute to the field of psychology.\n\nPlease press the spacebar to continue.'

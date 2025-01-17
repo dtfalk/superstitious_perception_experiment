@@ -68,6 +68,7 @@ from screeninfo import get_monitors
 
 screen_width_in_centimeters = 31.5
 distance_from_screen_in_centimeters = 69
+number_of_sona_credits = 'xxx'
 ```
 
 Change the the **screen_width_in_centimeters** variable to the width of the screen that you measured earlier. Then change the **distance_from_screen_in_centimeters** variable to the distance that the subject is sitting from the screen. For example, if the screen is 50 cm wide and the subject is sitting 100 cm away from the screen, then your code should look like this...
@@ -84,6 +85,18 @@ screen_width_in_centimeters = 50
 distance_from_screen_in_centimeters = 100
 ```
 
+The other thing you will need to change is the **number_of_sona_credits** variable above. It is currently set to 'xxx'. Change it to however many SONA credits you are offering your subjects for their participation.
+So if you are offering them 2 credits, then the line should read...
+```
+number_of_sona_credits = '2'
+```
+
+If you are offering them 0.5 SONA credits, then the line should read...
+```
+number_of_sona_credits = '0.5'
+```
+
+This updates what the subject sees during the consent screens at the beginning of the experiment
 **That is all that you should need to change!!**
 
 # Data Outputs
