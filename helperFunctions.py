@@ -9,13 +9,8 @@ from datetime import datetime
 from constants import *
 
 
-imageWidth, imageHeight = 51, 51
+imageWidth, imageHeight = 50, 50
 imageSize = imageWidth * imageHeight
-# scaleFactor = 0.5 * (winHeight / imageHeight)
-# scaleFactor = winHeight / 768
-scaleFactor = winWidth / 1024
-
-scaledImageSize = (imageWidth * scaleFactor, imageHeight * scaleFactor)
 
 # class for the buttons the user will see
 class Button:
