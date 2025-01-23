@@ -104,7 +104,7 @@ def main():
     # ============================================================================================
 
     # get user info and where to store their results
-    subjectName= getSubjectInfo('subject name', win)
+    subjectName = getSubjectInfo('subject name', win)
     subjectNumber = getSubjectInfo('subject number', win)
     subjectEmail = getSubjectInfo('subject email', win)
     experimenterName = getSubjectInfo('experimenter name', win)
