@@ -1,5 +1,3 @@
-# tests have been run and there is no overlapping stimuli
-# TODO: Add consent screen
 import pygame as pg
 from random import shuffle
 from time import sleep

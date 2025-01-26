@@ -21,31 +21,50 @@ Third, you will want to install Anaconda. This is for managing our virtual envir
 Once it is downloaded and installed, follow the instructions in this link to get anaconda and vs code working together: https://docs.anaconda.com/working-with-conda/ide-tutorials/vscode/
 
 
-# Downloading and running the code
+# Downloading the code
 Now we need to download the code for the experiment. Start by going to the github respository that contains the code (https://github.com/dtfalk/superstitious_perception_experiment). 
 
 Scroll to the top of the page and you should see a green "<> Code" button. Click on this button and a drop down menu will appear. Click on the "Download Zip" option and this will download the code for you as a zip file. 
 
-Once the download finishes, unzip the folder and extract the **superstitious_perception_experiment-master** file to your desktop.
+Once the download finishes, open up the folder and extract the folder inside of it. Put it on your desktop. Inside this folder should be all of the files/folders found on the github link. You don't want to open the folder and find a single folder which contains all of the code/templates. Rename the folder on your desktop to **superstitious_perception_experiment**.
 
-Then, open VS code and select the **File** button, followed by **Open Folder...** and open the **superstitious_perception_experiment-master** folder. This should open all of the files for the experiment in your VS Code window. 
 
-Then open a VS Code terminal and enter the following command to download all necessary packages for the experiment...
+Then open a **Anaconda Prompt** (can be found in your file searcher) and enter the following command to download all necessary packages for the experiment...
 
 ```
 conda env create -f superstitious_perception_experiment.yml
 ```
 
-After that finishes, enter the following command into the terminal...
+# Running the code
+Now open up VS Code. Press the **File** tab (likely towards the top left of the screen) and select **Open Folder...** from the dropdown menu. Navigate to your desktop, select the folder with the experimental code, and open it. This should open the superstitious perception experiment code in your VS Code window. 
+
+Now click on the **View** tab (likely towards the top left of the screen) and select **Command Palette...**. Then enter **>Python: Select Interpreter**. This should open a drop down menu. Select the one that says something like **Python 3.9.0 ('superstitious_perception_experiment')**. 
+
+Now open up the the **runExperiment.py** file from the left of the screen. **MAKE SURE THAT YOU ARE LOOKING AT THE CONTENTS OF THIS FILE FOR THE NEXT STEP**. It should look like this if you scroll to the top of the file...
 
 ```
-conda activate superstitious_perception_experiment
+import pygame as pg
+from random import shuffle
+from time import sleep
+from helperFunctions import *
+from questionnaires import main as questions
+from questionnaires import flow_state_scale
+
+
+# The experiment itself
+def experiment(subjectName, subjectNumber, block, targetStimuli, distractorStimuli, saveFolder, win):
+
+
+    # various variables for handling the game
+    pg.event.clear()
+    reset = False
+    startTime = pg.time.get_ticks()
+    
+    # select an initial image
+    image, stimulusNumber, stimulusType = selectStimulus(targetStimuli, distractorStimuli)
 ```
 
-Great! Now enter the following command to run the experiment...
-```
-python runExperiment.py
-```
+Now click on the **Run** tab (likely towards the top left of the screen) and select **Run Without Debugging**. If it asks you which debugger you want to choose, just pick whatever standard Python one is there. Now the code should be running!
 
 # Things you need to modify
 This experiment has a requirement that the images that the user sees occupy 2-degrees of their visual field. Ensuring this happens is a function of how big the monitor is, how far the user is sitting from the screen, and the resolution of the computer. 
