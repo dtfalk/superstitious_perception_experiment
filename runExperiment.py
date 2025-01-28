@@ -3,7 +3,7 @@ from random import shuffle
 from time import sleep
 from helperFunctions import *
 from questionnaires import main as questions
-from questionnaires import flow_state_scale
+from questionnaires import flow_state_scale, stanford_sleepiness_scale
 
 
 # The experiment itself
@@ -135,10 +135,11 @@ def main():
 
     
     # showing the user the experiment
-    consented = consentScreen(subjectNumber, subjectName, subjectEmail, experimenterName, win)
+    consented = consentScreen(subjectNumber, subjectEmail, experimenterName, win)
     if not consented:
         nonConsentScreen(win)
-    questions(subjectNumber, win)
+    sleepiness_responses = []
+    questions(subjectNumber, sleepiness_responses, win)
     experimentIntro(win)
     experimentExplanation(win)
     pg.event.clear()
@@ -159,14 +160,26 @@ def main():
         
         # give break screen betweeen blocks
         if i < len(blocks) - 1:
+            if i == 1:
+                stanford_sleepiness_scale(sleepiness_responses, win)
             breakScreen(i + 1, win)
             realInstructionsAlt(win)
     
     # flow state scale
     flow_state_scale(subjectNumber, win)
 
+    # final stanford sleepiness scale
+    stanford_sleepiness_scale(sleepiness_responses, win)
+
+    # write the responses to a csv file with the questionnaire's name
+    with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'stanford_sleepiness.csv'), mode = 'w', newline = '') as f:
+        writer = csv.writer(f)
+        header = ['Pre-Experiment', 'During Experiment', 'Post-Experiment']
+        writer.writerow(header)
+        writer.writerow([''.join([ch for ch in response if ch.isdigit()]) for response in sleepiness_responses])
+
     # exit screen thanking participants
-    exitScreen(win)
+    exitScreen(subjectNumber, win)
 
     # calculate overall data and write to a user-specific data file
     writeSummaryData(subjectName, subjectNumber, blocks, saveFolder)

@@ -231,10 +231,14 @@ def multiLineMessage(text, textsize, win, xPos_start = 0.05 * winWidth, yPos_sta
 def isValid(key, requestType):
 
     # response only allows a-z and spaces
-    if 'name' in requestType:
+    if 'name' in requestType or requestType == 'Signature':
         if 97 <= key <= 122 or key == 32:
             return True
-
+    
+    elif requestType == 'additionalComments':
+        if 32 <= key <= 126 and key != 124:
+            return True
+        
     # subject number and level selection only allow digits
     elif requestType == 'subject number':
         if 48 <= key <= 57:
@@ -290,7 +294,10 @@ def getSubjectInfo(requestType, win):
         if exit == True:
             break
         win.fill(backgroundColor) 
-        text = "Please enter the requested information. Then press Enter or Return to continue. Press ESC to exit or inform the observer of your decision. \n\n"
+        if requestType != 'signature':
+            text = "Please enter the requested information. Then press Enter or Return to continue. Press ESC to exit or inform the observer of your decision. \n\n"
+        else:
+            text = "Please type your name to confirm that you consent to participate in this study. Press Enter or Return to submit.\n\n"
         multiLineMessage(text + f'\n{requestType}: ' + response, mediumFont, win)
         pg.display.flip()
 
@@ -567,11 +574,16 @@ def breakScreen(i, win):
     waitKey(pg.K_f)
 
 # exit screen thanking the participant
-def exitScreen(win):
+def exitScreen(subjectNumber, win):
     win.fill(backgroundColor)
     multiLineMessage(exitScreenText, mediumFont, win)
     pg.display.flip()
     waitKey(pg.K_f)
+    additionalComments = getSubjectInfo('additionalComments', win)
+    with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'additional_comments.txt'), mode = 'w') as f:
+        f.write(additionalComments)
+    return
+
 
 # exit screen thanking the participant
 def nonConsentScreen(win):
@@ -584,83 +596,150 @@ def nonConsentScreen(win):
 
 
 # contains questionnaire questions and displays questionnaire to the subject
-def consentScreen(subjectNumber, subjectName, subjectEmail, experimenterName, win):
+def consentScreen(subjectNumber, subjectEmail, experimenterName, win):
+    index = 0
+    while True:
+        pg.mouse.set_visible(False)
 
-    win.fill(backgroundColor)
-    multiLineMessage(studyInfoText, mediumFont, win)
-    pg.display.flip()
-    waitKey(pg.K_SPACE)
+        if index == 0:
+            pg.event.clear()
+            running = True
+            while running:
+                win.fill(backgroundColor)
+                multiLineMessage(studyInfoText, mediumFont, win)
+                pg.display.flip()
+                for event in pg.event.get():
+                    if event.type == pg.KEYDOWN:
+                        if event.key == pg.K_ESCAPE:
+                            pg.quit()
+                            sys.exit()
+                        elif event.key == pg.K_RIGHT:
+                            index += 1
+                            running = False
 
-    win.fill(backgroundColor)
-    multiLineMessage(risksAndBenefitsText, mediumFont, win)
-    pg.display.flip()
-    waitKey(pg.K_SPACE)
+        elif index == 1:
+            pg.event.clear()
+            running = True
+            while running:
+                win.fill(backgroundColor)
+                multiLineMessage(risksAndBenefitsText, mediumFont, win)
+                pg.display.flip()
+                for event in pg.event.get():
+                    if event.type == pg.KEYDOWN:
+                        if event.key == pg.K_ESCAPE:
+                            pg.quit()
+                            sys.exit()
+                        elif event.key == pg.K_RIGHT:
+                            index += 1
+                            running = False
+                        elif event.key == pg.K_LEFT:
+                            index -= 1
+                            running = False
 
-    win.fill(backgroundColor)
-    multiLineMessage(confidentialityText, mediumFont, win)
-    pg.display.flip()
-    waitKey(pg.K_SPACE)
+        elif index == 2:
+            running = True
+            while running:
+                win.fill(backgroundColor)
+                multiLineMessage(confidentialityText, mediumFont, win)
+                pg.display.flip()
+                for event in pg.event.get():
+                    if event.type == pg.KEYDOWN:
+                        if event.key == pg.K_ESCAPE:
+                            pg.quit()
+                            sys.exit()
+                        elif event.key == pg.K_RIGHT:
+                            index += 1
+                            running = False
+                        elif event.key == pg.K_LEFT:
+                            index -= 1
+                            running = False
+                    
+        elif index == 3:
+            running = True
+            while running:
+                win.fill(backgroundColor)
+                multiLineMessage(contactsAndQuestionsText, mediumFont, win)
+                pg.display.flip()
+                for event in pg.event.get():
+                    if event.type == pg.KEYDOWN:
+                        if event.key == pg.K_ESCAPE:
+                            pg.quit()
+                            sys.exit()
+                        elif event.key == pg.K_RIGHT:
+                            index += 1
+                            running = False
+                        elif event.key == pg.K_LEFT:
+                            index -= 1
+                            running = False
 
-    win.fill(backgroundColor)
-    multiLineMessage(contactsAndQuestionsText, mediumFont, win)
-    pg.display.flip()
-    waitKey(pg.K_SPACE)
+        elif index == 4:
+            pg.mouse.set_visible(True)
+            # variables to hold all of the questions and their associated response options
+            questions = []
 
-    pg.mouse.set_visible(True)
-    # variables to hold all of the questions and their associated response options
-    questions = []
+            # question 1 text and response options
+            question1 = 'By clicking “I agree” below, you confirm that you have read the consent form, are at least 18 years old, and agree to participate in the research. Please print or save a copy of this page for your records. By selecting “I do NOT agree” you will not be able to participate in this research and we thank you for your consideration. You may use the arrow keys to review the information in this consent form before making a decision.'
+            ResponseOptions1 = ['I agree to participate in the research', 'I do NOT agree to participate in the research ']
+            questions.append([question1] + ResponseOptions1)
 
-    # question 1 text and response options
-    question1 = 'By clicking “I agree” below, you confirm that you have read the consent form, are at least 18 years old, and agree to participate in the research. Please print or save a copy of this page for your records. By selecting “I do NOT agree” you will not be able to participate in this research and we thank you for your consideration.'
-    ResponseOptions1 = ['I agree to participate in the research', 'I do NOT agree to participate in the research ']
-    questions.append([question1] + ResponseOptions1)
+            submitButton = Button('submit', 'tellegen', 'Submit', -1, 0) # submit button
+            responses = [] # for storing answers to each question
 
-    submitButton = Button('submit', 'tellegen', 'Submit', -1, 0) # submit button
-    responses = [] # for storing answers to each question
+            # iterate over each question and display to user
+            for i, question in enumerate(questions):
 
-    # iterate over each question and display to user
-    for i, question in enumerate(questions):
+                response = None
+                running = True
 
-        response = None
+                # draw the question and return how far down the screen the text goes
+                yPos = multiLineMessage(question[0], mediumFont, win)
 
-        # draw the question and return how far down the screen the text goes
-        yPos = multiLineMessage(question[0], mediumFont, win)
+                # create all of the options for this particular questions
+                buttons = [submitButton]
+                for i, question_option in enumerate(question):
+                    if i == 0:
+                        continue
+                    buttons.append(Button('option', 'tellegen', question_option, i, yPos))
 
-        # create all of the options for this particular questions
-        buttons = [submitButton]
-        for i, question_option in enumerate(question):
-            if i == 0:
-                continue
-            buttons.append(Button('option', 'tellegen', question_option, i, yPos))
+                while response == None and running:
+                    win.fill(backgroundColor)
+                    for event in pg.event.get():
+                        if event.type == pg.KEYDOWN:
+                            if event.key == pg.K_ESCAPE: # escape will exit the study
+                                pg.quit()
+                                sys.exit()
+                            if event.key == pg.K_LEFT:
+                                index -= 1
+                                running = False
+                        elif event.type == pg.MOUSEBUTTONUP:
+                            for i, button in enumerate(buttons):
+                                if (button.coords[0] <= pg.mouse.get_pos()[0] <= button.coords[0] + button.coords[2]) \
+                                    and (button.coords[1] <= pg.mouse.get_pos()[1] <= button.coords[1] + button.coords[3]):
+                                    response = button.handleClick(buttons)
+                        pg.event.clear()
 
-        while response == None:
-            win.fill(backgroundColor)
-            for event in pg.event.get():
-                if event.type == pg.KEYDOWN:
-                    if event.key == pg.K_ESCAPE: # escape will exit the study
-                        pg.quit()
-                        sys.exit()
-                elif event.type == pg.MOUSEBUTTONUP:
-                    for i, button in enumerate(buttons):
-                        if (button.coords[0] <= pg.mouse.get_pos()[0] <= button.coords[0] + button.coords[2]) \
-                            and (button.coords[1] <= pg.mouse.get_pos()[1] <= button.coords[1] + button.coords[3]):
-                            response = button.handleClick(buttons)
+                    # draw the question and return how far down the screen the text goes
+                    multiLineMessage(question[0], mediumFont, win)
 
-            # draw the question and return how far down the screen the text goes
-            multiLineMessage(question[0], mediumFont, win)
-
-            # draw the submit button and the checkboxes for this questions
-            submitButton.draw(win)
-            for i, button in enumerate(buttons): 
-                button.draw(win)
-            pg.display.flip() 
-        
-        # add the user's response to the list of responses
-        responses.append(response)
-    if 'I agree' in responses[0]:
-        consented = True
-    else:
-        consented = False
+                    # draw the submit button and the checkboxes for this questions
+                    submitButton.draw(win)
+                    for i, button in enumerate(buttons): 
+                        button.draw(win)
+                    pg.display.flip() 
+                
+                # add the user's response to the list of responses
+                if response:
+                    responses.append(response)
+            if len(responses) != 0:  
+                if 'I agree' in responses[0]:
+                    consented = True
+                    # subject's signature
+                    pg.mouse.set_visible(False)
+                    signature = getSubjectInfo('Signature', win)
+                else:
+                    consented = False
+                    signature = ''
+                break
     
     # Create a timezone object for Central Time
     central_tz = pytz.timezone('America/Chicago')
@@ -677,7 +756,7 @@ def consentScreen(subjectNumber, subjectName, subjectEmail, experimenterName, wi
     with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'consentInfo.csv'), mode = 'w', newline = '') as f:
         writer = csv.writer(f)
         writer.writerow(['Subject Number', 'Subject Name', 'Subject Email', 'Experimenter Name', 'Consented', 'Date'])
-        writer.writerow([subjectNumber, subjectName, subjectEmail, experimenterName, str(consented), formatted_date])
+        writer.writerow([subjectNumber, signature, subjectEmail, experimenterName, str(consented), formatted_date])
     return consented
 
 # =======================================================================

@@ -21,6 +21,9 @@ class Button:
                 scalar = 1.4
             elif questionnaireName == 'dissociative':
                 scalar = 1.5
+            elif questionnaireName == 'sleepiness':
+                scalar = 1.3
+                self.fontSize = int(0.85 * mediumFont)
             spacing = scalar * i * self.fontSize 
             buffer = winHeight // 20
             maxY = (0.85 * winHeight) - self.fontSize
@@ -392,6 +395,66 @@ def launay_slade(subjectNumber, win):
         writer.writerow(header)
         assert(len(responses) == 12)
         writer.writerow([''.join([ch for ch in response if ch.isdigit()]) for response in responses])
+    return
+
+# contains questionnaire questions and displays questionnaire to the subject
+def stanford_sleepiness_scale(sleepinessResponses, win):
+    pg.mouse.set_visible(True)
+
+    # variables to hold all of the questions and their associated response options
+    questions = []
+
+    # question 1 text and response options
+    question1 = 'Please indicate your current level of sleepiness'
+    ResponseOptions1 = ['1 - Feeling active and vital; alert; wide awake.', '2 - Functioning at a high level, but not at peak; able to concentrate.', '3 - Relaxed; awake; not at full alertness; responsive.', '4 - A little foggy; not at peak; let down.', '5 - Fogginess; beginning to lose interest in remaining awake; slowed down.', '6 - Sleepiness; prefer to be lying down; fighting sleep; woozy.', '7 - Almost in reverie; sleep onset soon; lost struggle to remain awake']
+    questions.append([question1] + ResponseOptions1)
+
+    submitButton = Button('submit', 'launay', 'Submit', -1, 0) # submit button
+    responses = [] # for storing answers to each question
+
+    # iterate over each question and display to user
+    for i, question in enumerate(questions):
+        
+        response = None
+
+        # draw the question and return how far down the screen the text goes
+        yPos = multiLineMessage(question[0], mediumFont, win)
+
+        # create all of the options for this particular questions
+        buttons = [submitButton]
+        for i, question_option in enumerate(question):
+            if i == 0:
+                continue
+            buttons.append(Button('option', 'sleepiness', question_option, i, yPos))
+
+        while response == None:
+
+            win.fill(backgroundColor)
+            for event in pg.event.get():
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_ESCAPE: # escape will exit the study
+                        pg.quit()
+                        sys.exit()
+                elif event.type == pg.MOUSEBUTTONUP:
+                    for i, button in enumerate(buttons):
+                        if (button.coords[0] <= pg.mouse.get_pos()[0] <= button.coords[0] + button.coords[2]) \
+                            and (button.coords[1] <= pg.mouse.get_pos()[1] <= button.coords[1] + button.coords[3]):
+                            response = button.handleClick(buttons)
+
+            # draw the question and return how far down the screen the text goes
+            multiLineMessage(question[0], mediumFont, win)
+
+            # draw the submit button and the questions
+            submitButton.draw(win)
+            for i, button in enumerate(buttons): 
+                button.draw( win)
+            pg.display.flip() 
+        
+        # add the user's response to the list of responses
+        responses.append(response)
+    
+    sleepinessResponses.append(responses[0])
+    pg.mouse.set_visible(False)
     return
 
 # contains questionnaire questions and displays questionnaire to the subject
@@ -783,9 +846,10 @@ def dissociative_experiences(subjectNumber, win):
     return
 
 
-def main(subjectNumber, win):
+def main(subjectNumber, sleepiness_responses, win):
     pg.mouse.set_visible(True)
-    tellegen(subjectNumber, win)
-    launay_slade(subjectNumber, win)
-    dissociative_experiences(subjectNumber, win)
+    stanford_sleepiness_scale(sleepiness_responses, win)
+    # tellegen(subjectNumber, win)
+    # launay_slade(subjectNumber, win)
+    # dissociative_experiences(subjectNumber, win)
     pg.mouse.set_visible(False)
