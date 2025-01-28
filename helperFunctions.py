@@ -235,7 +235,7 @@ def isValid(key, requestType):
         if 97 <= key <= 122 or key == 32:
             return True
     
-    elif requestType == 'additionalComments':
+    elif requestType == 'Additional Comments':
         if 32 <= key <= 126 and key != 124:
             return True
         
@@ -579,7 +579,7 @@ def exitScreen(subjectNumber, win):
     multiLineMessage(exitScreenText, mediumFont, win)
     pg.display.flip()
     waitKey(pg.K_f)
-    additionalComments = getSubjectInfo('additionalComments', win)
+    additionalComments = getSubjectInfo('Additional Comments', win)
     with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'additional_comments.txt'), mode = 'w') as f:
         f.write(additionalComments)
     return

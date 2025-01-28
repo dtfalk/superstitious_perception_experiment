@@ -119,6 +119,8 @@ number_of_sona_credits = '0.5'
 This updates what the subject sees during the consent screens at the beginning of the experiment
 **That is all that you should need to change!!**
 
+**If at any point in the study you see a screen that does not tell you which button to press, then press the F key**
+
 # Data Outputs
 The experiment typically takes 90 minutes to run. When the experiment first starts you will be asked to enter a **Subject Name** and a **Subject Number**. Once the subject completes the experiment, their results will be located in the **results** folder. The sub-folder containing their results will be named according to their subject number. So if your subject has subject number **1122334455**, then their results will be in a folder that is named **1122334455**. Within each folder there will be the following files:
 
@@ -137,5 +139,9 @@ The experiment typically takes 90 minutes to run. When the experiment first star
 **unweighted_icorrelated.csv:** The subject's responses to the unweighted with i-correlated distractors block.
 
 **unweighted_uncorrelated.csv:** The subject's responses to the unweighted with uncorrelated distractors block.
+
+**stanford_sleepiness.csv:** The subject's three responses to the single-question stanford sleepiness scale.
+
+**additional_comments.txt:** The experimenter's additional comments as a text file.
 
 **summaryData.csv:** A file containing summary data of the subject's performance over the four blocks. This includes dprime scores and the order in which the subjects received the blocks.
