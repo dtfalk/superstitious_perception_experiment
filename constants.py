@@ -159,12 +159,12 @@ showExamplesText = 'On the left is an example of an image where the “H” is p
 
                 
 realText = 'Remember, you are looking for the template "H", which will always be black, centered, and on a white background. It will always appear in the same place if it is present, and it is present in half of the images.\n\n\
-After viewing the template "H" for 20 seconds, you will begin assessing each image. Press "Y" if you believe the "H" is in the image, and press "N" if you do not see it. The task consists of four rounds, and you will receive a short break between each round to rest.\n\n\
+After viewing the template "H" for 20 seconds, you will begin assessing each image. Press "Y" if you believe the "H" is in the image, and press "N" if you do not believe that you see it. The task consists of four rounds, and you will receive a short break between each round to rest.\n\n\
 Press the spacebar when you are ready to proceed and start making your selections.\n\n\
 Good luck, and believe in yourself! It is normal to feel unsure, as many participants think they are not doing well, but you will likely perform better than you expect!'
 
 realTextAlt = 'Remember, you are looking for the template "H", which will always be black, centered, and on a white background. It will always appear in the same place if it is present, and it is present in half of the images.\n\n\
-After viewing the template "H" for 20 seconds, you will begin assessing each image. Press "Y" if you believe the "H" is in the image, and press "N" if you do not see it. \n\n\
+After viewing the template "H" for 20 seconds, you will begin assessing each image. Press "Y" if you believe the "H" is in the image, and press "N" if you do not believe that you see it. \n\n\
 Press the spacebar when you are ready to proceed and start making your selections.\n\n\
 Good luck, and believe in yourself! It is normal to feel unsure, as many participants think they are not doing well, but you will likely perform better than you expect!'
 
