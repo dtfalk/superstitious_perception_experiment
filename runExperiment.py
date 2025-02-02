@@ -49,7 +49,7 @@ def experiment(subjectName, subjectNumber, block, targetStimuli, distractorStimu
                     # 2 second rest between each stimulus
                     win.fill(backgroundColor)
                     pg.display.flip()
-                    sleep(2)
+                    #sleep(2)
                     pg.event.clear()
             
         # while the trial continues on just keep the image on the screen until they give a response
@@ -106,7 +106,11 @@ def main():
     subjectNumber = getSubjectInfo('subject number', win)
     subjectEmail = getSubjectInfo('subject email', win)
     experimenterName = getSubjectInfo('experimenter name', win)
+
     saveFolder = os.path.join(os.path.dirname(__file__), 'results', subjectNumber)
+    while os.path.exists(saveFolder):
+        subjectNumber = subjectNumber + '0'
+        saveFolder = os.path.join(os.path.dirname(__file__), 'results', subjectNumber)
     os.makedirs(saveFolder, exist_ok = True)
 
     # gets the top rated Hs, top rated Is and noisy images

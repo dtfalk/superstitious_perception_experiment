@@ -233,12 +233,11 @@ def tellegen(subjectNumber, win):
         response = None
 
         if i == 0:
-            multiLineMessage(questionnairesIntroText, mediumFont, win)
-            pg.display.flip()
-            waitKey(pg.K_SPACE)
+            pg.mouse.set_visible(False)
             multiLineMessage(telleganScaleText, mediumFont, win)
             pg.display.flip()
             waitKey(pg.K_SPACE)
+            pg.mouse.set_visible(True)
 
         # draw the question and return how far down the screen the text goes
         yPos = multiLineMessage(question[0], mediumFont, win)
@@ -346,9 +345,11 @@ def launay_slade(subjectNumber, win):
     for i, question in enumerate(questions):
         
         if i == 0:
+            pg.mouse.set_visible(False)
             multiLineMessage(launeyScaleText, mediumFont, win)
             pg.display.flip()
             waitKey(pg.K_SPACE)
+            pg.mouse.set_visible(True)
 
         response = None
 
@@ -795,9 +796,11 @@ def dissociative_experiences(subjectNumber, win):
 
         # instructions
         if i == 0:
+            pg.mouse.set_visible(False)
             multiLineMessage(dissociativeExperiencesText, mediumFont, win)
             pg.display.flip()
             waitKey(pg.K_SPACE)
+            pg.mouse.set_visible(True)
 
         # draw the question and return how far down the screen the text goes
         yPos = multiLineMessage(question[0], mediumFont, win)
@@ -847,8 +850,14 @@ def dissociative_experiences(subjectNumber, win):
 
 
 def main(subjectNumber, sleepiness_responses, win):
+
+    multiLineMessage(questionnairesIntroText, mediumFont, win)
+    pg.display.flip()
+    waitKey(pg.K_SPACE)
+
     pg.mouse.set_visible(True)
     stanford_sleepiness_scale(sleepiness_responses, win)
+    pg.mouse.set_visible(True)
     tellegen(subjectNumber, win)
     launay_slade(subjectNumber, win)
     dissociative_experiences(subjectNumber, win)
