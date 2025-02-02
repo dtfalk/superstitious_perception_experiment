@@ -849,7 +849,7 @@ def dissociative_experiences(subjectNumber, win):
 def main(subjectNumber, sleepiness_responses, win):
     pg.mouse.set_visible(True)
     stanford_sleepiness_scale(sleepiness_responses, win)
-    # tellegen(subjectNumber, win)
-    # launay_slade(subjectNumber, win)
-    # dissociative_experiences(subjectNumber, win)
+    tellegen(subjectNumber, win)
+    launay_slade(subjectNumber, win)
+    dissociative_experiences(subjectNumber, win)
     pg.mouse.set_visible(False)
