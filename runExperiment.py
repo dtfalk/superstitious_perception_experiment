@@ -143,9 +143,8 @@ def main():
     if not consented:
         nonConsentScreen(win)
     sleepiness_responses = []
-    questions(subjectNumber, sleepiness_responses, win)
-    experimentIntro(win)
     experimentExplanation(win)
+    stanford_sleepiness_scale(sleepiness_responses, win)
     pg.event.clear()
 
     # give users all four blocks
@@ -169,11 +168,8 @@ def main():
             breakScreen(i + 1, win)
             realInstructionsAlt(win)
     
-    # flow state scale
-    flow_state_scale(subjectNumber, win)
-
-    # final stanford sleepiness scale
-    stanford_sleepiness_scale(sleepiness_responses, win)
+    # display questionnaires
+    questions(subjectNumber, sleepiness_responses, win)
 
     # write the responses to a csv file with the questionnaire's name
     with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'stanford_sleepiness.csv'), mode = 'w', newline = '') as f:

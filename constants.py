@@ -146,7 +146,7 @@ explanationText_5 = 'What to keep in mind:\n\n\
     - It is okay to feel uncertain; the goal is to make your best guess based on what you sense in the image.\n\n\n\
 If you have any questions please ask the exprimenter now.\n\n\
 If you do not have any further questions and are ready to begin, press spacebar to continue. \n\n\
-You will be presented with the "H" for 20 seconds. After it disappears, please begin responding with "Y" or "N".\n\n\
+You will be asked to respond to a single question and then you will be presented with the "H" for 20 seconds. After it disappears, please begin responding with "Y" or "N".\n\n\
 Good luck, and remember that if you are actively trying, it is okay to trust your gut-feelings!'
 
 showExamplesText = 'On the left is an example of an image where the “H” is present, while on the right is an image where the “H” is absent. As you can see, this task is quite difficult. Just from looking at the differences between these images, you can tell that identifying the “H” will not come from clearly seeing it. Instead, you may find yourself relying on subtle impressions, patterns, or even a gut feeling that the “H” is there.\n\n\
