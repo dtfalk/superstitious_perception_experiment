@@ -168,8 +168,18 @@ def main():
             breakScreen(i + 1, win)
             realInstructionsAlt(win)
     
+    pg.mouse.set_visible(True)
+    stanford_sleepiness_scale(sleepiness_responses, win)
+    subjectExplanation_methodology = getSubjectInfo('selfReflect_explanation', win)
+    with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'selfReflect_methodology.txt'), mode = 'w') as f:
+        f.write(subjectExplanation_methodology)
+
+    subjectExplanation_changes = getSubjectInfo('selfReflect_changes', win)
+    with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'selfReflect_changes.txt'), mode = 'w') as f:
+        f.write(subjectExplanation_changes)
+    
     # display questionnaires
-    questions(subjectNumber, sleepiness_responses, win)
+    questions(subjectNumber, win)
 
     # write the responses to a csv file with the questionnaire's name
     with open(os.path.join(os.path.dirname(__file__), 'results', subjectNumber, 'stanford_sleepiness.csv'), mode = 'w', newline = '') as f:

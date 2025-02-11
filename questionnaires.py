@@ -849,14 +849,11 @@ def dissociative_experiences(subjectNumber, win):
     return
 
 
-def main(subjectNumber, sleepiness_responses, win):
+def main(subjectNumber, win):
 
     multiLineMessage(questionnairesIntroText, mediumFont, win)
     pg.display.flip()
     waitKey(pg.K_SPACE)
-
-    pg.mouse.set_visible(True)
-    stanford_sleepiness_scale(sleepiness_responses, win)
     pg.mouse.set_visible(True)
     tellegen(subjectNumber, win)
     launay_slade(subjectNumber, win)

@@ -235,8 +235,8 @@ def isValid(key, requestType):
         if 97 <= key <= 122 or key == 32:
             return True
     
-    elif requestType == 'Additional Comments':
-        if 32 <= key <= 126 and key != 124:
+    elif requestType == 'Additional Comments' or requestType == 'selfReflect_explanation'or requestType == 'selfReflect_changes':
+        if 32 <= key <= 126:
             return True
         
     # subject number and level selection only allow digits
@@ -255,6 +255,9 @@ def isValid(key, requestType):
 def getSubjectInfo(requestType, win):
 
     response = "" 
+    prompter = requestType
+    if requestType == 'selfReflect_changes' or requestType == 'selfReflect_explanation':
+        prompter = 'Response'
     exit = False
 
     # event loop
@@ -294,11 +297,15 @@ def getSubjectInfo(requestType, win):
         if exit == True:
             break
         win.fill(backgroundColor) 
-        if requestType != 'signature':
-            text = "Please enter the requested information. Then press Enter or Return to continue. Press ESC to exit or inform the observer of your decision. \n\n"
-        else:
+        if requestType == 'signature':
             text = "Please type your name to confirm that you consent to participate in this study. Press Enter or Return to submit.\n\n"
-        multiLineMessage(text + f'\n{requestType}: ' + response, mediumFont, win)
+        elif requestType == 'selfReflect_explanation':
+            text = 'During the experiment, how did you decide whether or not there was an "H" in each of the stimuli? What were you thinking about or considering as you made that decision?\n'
+        elif requestType == 'selfReflect_changes':
+            text = 'Did your methodology change or evolve over the course of the experiment?\n'
+        else:
+            text = "Please enter the requested information. Then press Enter or Return to continue. Press ESC to exit or inform the observer of your decision. \n\n"
+        multiLineMessage(text + f'\n{prompter}: ' + response, mediumFont, win)
         pg.display.flip()
 
     # if the user pressed either return or enter, then we continue
