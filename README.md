@@ -142,6 +142,10 @@ The experiment typically takes 90 minutes to run. When the experiment first star
 
 **stanford_sleepiness.csv:** The subject's three responses to the single-question stanford sleepiness scale.
 
+**selfReflect_methodology.txt:** The subject's explanation of how they chose which stimuli they think had the H vs not.
+
+**selfReflect_changes.txt:** The subject's explanation of how their decision procedure changed over the course of the experiment.
+
 **additional_comments.txt:** The experimenter's additional comments as a text file.
 
 **summaryData.csv:** A file containing summary data of the subject's performance over the four blocks. This includes dprime scores and the order in which the subjects received the blocks.
