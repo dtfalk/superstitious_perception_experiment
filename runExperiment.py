@@ -49,7 +49,7 @@ def experiment(subjectName, subjectNumber, block, targetStimuli, distractorStimu
                     # 2 second rest between each stimulus
                     win.fill(backgroundColor)
                     pg.display.flip()
-                    sleep(2)
+                    #sleep(2)
                     pg.event.clear()
             
         # while the trial continues on just keep the image on the screen until they give a response

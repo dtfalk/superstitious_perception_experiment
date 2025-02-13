@@ -594,6 +594,7 @@ def exitScreen(subjectNumber, win):
 
 # exit screen thanking the participant
 def nonConsentScreen(win):
+    pg.mouse.set_visible(False)
     win.fill(backgroundColor)
     multiLineMessage(nonConsentText, mediumFont, win)
     pg.display.flip()

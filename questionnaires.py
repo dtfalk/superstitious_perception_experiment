@@ -180,7 +180,7 @@ def tellegen(subjectNumber, win):
     ResponseOptions23 = ['True', 'False']
     questions.append([question23] + ResponseOptions23)
 
-    question24 = 'When listening to organ music or other powerful music I sometimes feels as if I am being lifted into the sky.'
+    question24 = 'When listening to organ music or other powerful music I sometimes feel as if I am being lifted into the sky.'
     ResponseOptions24 = ['True', 'False']
     questions.append([question24] + ResponseOptions24)
 
